@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/bc28de4128.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap" rel="stylesheet">
+    <script src="js/jquery-3.7.1.js"></script>
+    <script>
+        $(function() {
+            $('header').css('visibility', 'hidden');
+            $('main').css('visibility', 'hidden');
+            $('footer').css('visibility', 'hidden');
+
+            $('#box1').animate({'left':'0'}, 1000);
+            $('#box2').animate({'right':'0'}, 1000);
+
+            $('#first i').on('click', function() {
+                $('#first').hide();
+                $('header').css('visibility', 'visible');
+                $('main').css('visibility', 'visible');
+                $('footer').css('visibility', 'visible');
+
+            });
+
+
+            $('#hiddenButton').hover(
+                function(){$(this).css({'background-color':'blue', 'color':'white'})},
+                function(){$(this).css({'background-color':'', 'color':''})}
+            );
+
+            $('#hiddenButton').on('click', function() {
+                $('#hiddenMenu').animate({'right':'0'}, 1000);
+            });
+
+            $('#closeButton').on('click', function() {
+                $('#hiddenMenu').animate({'right':'-100%'}, 1000);
+            });
+            
+            $('.desc:eq(0)').siblings().hide();
+
+            $('#aside ul li:eq(0)').on('click', function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.desc:eq(0)').fadeIn().siblings().fadeOut();
+            });
+            $('#aside ul li:eq(1)').on('click', function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.desc:eq(1)').fadeIn().siblings().fadeOut();
+            });
+            $('#aside ul li:eq(2)').on('click', function() {
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.desc:eq(2)').fadeIn().siblings().fadeOut();
+
+            });
+
+            $('.subMenu').hide();
+            $('#mainMenu').hover(
+                function(){$('.subMenu').show();},
+                function(){$('.subMenu').hide();}
+            );
+        });
+    </script>
+    <style>
+        * {margin:0; padding:0; list-style:none; text-decoration:none; box-sizing:border-box;}
+        #container {font-family:'Ubuntu', sans-serif;}
+        #first {width:100%; height:100vh;}
+        #box1 {background-color:rgb(138, 229, 252); top:0; left:-100%;}
+        #box2 {background-color:rgb(148, 255, 241); top:50vh; right:-100%;}
+        .boxbox {width:100%; height:50vh; position:fixed;}
+        #firstText {position:fixed; color:white;  left:50%; top:50%; transform:translate(-50%, -50%); text-align:center;}
+        #firstText .smallText {font-size:70px;}
+        #firstText .bigText {font-size:100px;}
+        #first i {font-size:100px; color:white; position:fixed; left:70px; top:70px;}
+
+        header {background-color:rgba(169, 253, 253, 0.664); display:flex; flex-flow:row wrap; align-items:center;}
+        header #topMenu {width:100%; display:flex; align-items:center; border-bottom:1px solid rgb(175, 171, 171);}
+        header #topMenu ul {display:flex; justify-content:flex-end; align-items:center; width:90%;}
+        header #topMenu ul li {font-size:25px; width:7%; text-align:center; padding:10px;}
+        header #topMenu p {width:10%; text-align:center; font-family: 'Sunflower', sans-serif;}
+        header #logo {width:15%; text-align:center; padding:30px 0;}
+        header #mainMenu {width:70%; padding:30px 0;}
+        header #mainMenu ul {display:flex; text-align:center; align-items:center;}
+        header #mainMenu ul li {padding:10px; width:25%; position:relative;}
+        header #mainMenu ul li .subMenu {z-index:10; background-color:rgb(240, 231, 255); flex-flow:column wrap; position:absolute; left:0; top:68px; width:100%;}
+        header #rightMenu {width:15%;}
+        header #rightMenu ul {display:flex; padding:10px; justify-content:center;}
+        header #rightMenu ul li {width:30%; padding:30px; text-align:center; border-radius:50%;}
+        header #hiddenMenu {color:white; display:flex; flex-flow:row wrap; justify-content:center; padding:80px; position:fixed; right:-100%; top:0; width:100%; height:100%;; background-color:rgb(155, 206, 255); z-index:100;}
+        header #hiddenMenu>h1 {position:relative; display:flex; align-items:center; font-size:50px; width:100%; border-bottom:1px solid white; margin-bottom:50px;}
+        header #hiddenMenu>h1 i {margin-right:20px;}
+        header #hiddenMenu #hidden1 {width:40%; padding-left:100px;}
+        header #hiddenMenu #hidden1 ul {line-height:90px;}
+        header #hiddenMenu #hidden1 ul li {font-size:70px;}
+        header #hiddenMenu #hidden2 {padding-left:100px; display:flex; flex-flow:column nowrap; justify-content:space-evenly; width:40%; height:540px;}
+        header #hiddenMenu #hidden2>h1 {font-size:40px;}
+        header #hiddenMenu .hiddenBox {line-height:27px;}
+        header #hiddenMenu .hiddenBox p {font-size:20px;}
+        header #hiddenMenu .hiddenBox h4 {font-size:25px;}
+        #closeButton {position:absolute; right:0; top:40%;}
+
+        #videoSection {margin:70px; position:relative;}
+        #videoSection h1 {text-align:center; padding-bottom:30px; font-size:30px;}
+        #videoSection video {width:100%;}
+        #videoSection p {position:absolute; left:5%; bottom:5%; animation:airplane 7s infinite linear}
+        @keyframes airplane {
+            0% {}
+            100% {left:85%; bottom:70%;}
+        }
+        #videoSection p i {font-size:70px;}
+    
+        #textSection #title {width:70%; margin:0 auto; text-align:center;}
+        #textSection #title h1 {font-size:30px; padding:10px;}
+        #textSection #eventBox {display:flex; margin:10px auto; width:50%;}
+        #textSection #eventBox #aside {padding:10px; width:50%; border-right:1px solid rgb(167, 164, 164);}
+        #textSection #eventBox #aside ul li::before {content:'✔ ';}
+        #textSection #eventBox #aside ul {padding-right:30px; line-height:40px; text-align:right; font-size:20px;}
+        .active {font-weight:bold; color:rgb(255, 95, 95);}
+        #textSection #eventBox #descBox {width:50%; position:relative;}
+        #textSection #eventBox .desc {padding:10px 10px 10px 30px; display:flex; flex-flow:row wrap; position:absolute; left:0; top:0;}
+        #textSection #eventBox .desc h1 {color:rgb(255, 95, 95); width:100%; padding-bottom:10px;}
+        #textSection #eventBox .desc .icon {width:auto; text-align:center; line-height:27px;}
+        #textSection #eventBox .desc .icon li {padding:0 10px;}
+        #textSection #eventBox .desc .week {line-height:27px;}
+        /*.desc2, .desc3 {visibility:hidden;} */
+
+        #footerWrap {margin-top:50px; background-color:gray; color:white; text-align:center; padding:30px;}
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="first">
+        <div id="box1" class="boxbox"></div>
+        <div id="box2" class="boxbox"></div>
+        <div id="firstText">
+            <h1 class="smallText">Whenever</h1>
+            <h1 class="bigText">GO TRAVEL</h1>
+            <h1 class="smallText">Wherever</h1>
+        </div>
+        <i class="fa-solid fa-house fa-bounce"></i>
+    </div>
+    <!--header start-->
+    <header>
+        <div id="topMenu">
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+                <li><i class="fa-brands fa-instagram"></i></li>
+                <li><i class="fa-brands fa-youtube"></i></li>
+            </ul>
+            <p>로그인/회원가입</p>
+        </div>
+        <div id="logo">
+            <h1>Go Travel</h1>
+        </div>
+        <div id="mainMenu">
+             <ul>
+                 <li>Good Place
+                    <ul class="subMenu">
+                        <li>menu1</li>
+                        <li>menu2</li>
+                        <li>menu3</li>
+                    </ul>
+                 </li>
+                 <li>Good People
+                    <ul class="subMenu">
+                        <li>menu1</li>
+                        <li>menu2</li>
+                        <li>menu3</li>
+                    </ul>
+                 </li>
+                 <li>Good Hotel
+                    <ul class="subMenu">
+                        <li>menu1</li>
+                        <li>menu2</li>
+                        <li>menu3</li>
+                    </ul>
+                 </li>
+                 <li>Good Airplane
+                    <ul class="subMenu">
+                        <li>menu1</li>
+                        <li>menu2</li>
+                        <li>menu3</li>
+                    </ul>
+                 </li>
+                 <li>Good Price
+                    <ul class="subMenu">
+                        <li>menu1</li>
+                        <li>menu2</li>
+                        <li>menu3</li>
+                    </ul>
+                 </li>
+             </ul>
+        </div>
+        <div id="rightMenu">
+             <ul>
+                 <li><i class="fa-solid fa-magnifying-glass"></i></li>
+                 <li><i class="fa-solid fa-share"></i></li>
+                 <li id="hiddenButton"><i class="fa-solid fa-bars"></i></li>
+             </ul>
+        </div>
+        <div id="hiddenMenu">
+            <h1><i class="fa-solid fa-location-dot"></i>SITE MAP
+                <i class="fa-regular fa-circle-xmark fa-flip" id="closeButton"></i>
+            </h1>
+            <div id="hidden1">
+                <ul>
+                    <li>PORTFOLIO</li>
+                    <li>Web Agency</li>
+                    <li>Introduce</li>
+                    <li>Business</li>
+                    <li>Solution</li>
+                    <li>History</li>
+                </ul>
+            </div>
+            <div id="hidden2">
+                <h1>Go Travel</h1>
+                <div class="hiddenBox">
+                    <p>Tel</p>
+                    <h4>010-1234-5678</h4>
+                </div>
+                <div class="hiddenBox">
+                    <p>Fax</p>
+                    <h4>02-000-0000</h4>
+                </div>
+                <div class="hiddenBox">
+                    <p>Email</p>
+                    <h4>gotravel@google.com</h4>
+                </div>
+                <div class="hiddenBox">
+                    <p>Address</p>
+                    <h4>Gyeonggi-do Goyang city 100-4</h4>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--main start-->
+    <main>
+        <section id="videoSection">
+            <h1>GOOD EVENT</h1>
+            <video src="video/cloud_-_48501 (720p).mp4" autoplay muted loop></video>
+            <p><i class="fa-solid fa-plane fa-fade"></i></p>
+        </section>
+        <section id="textSection">
+            <div id="title">
+                <h1>Your Turn</h1>
+            </div>
+            <div id="eventBox">
+                <div id="aside">
+                    <ul>
+                        <li class="active">3 Good Chane</li>
+                        <li>For You</li>
+                        <li>Add Gift</li>
+                    </ul>
+                </div>
+                <div id="descBox">
+                    <div class="desc desc1">
+                        <h1>3 Good Chane</h1>
+                        <ul class="icon">
+                            <li><i class="fa-regular fa-heart"></i></li>
+                            <li><i class="fa-solid fa-shield-heart"></i></li>
+                            <li><i class="fa-solid fa-hand-holding-heart"></i></li>
+                        </ul>
+                        <ul class="week">
+                            <li>Monday</li>
+                            <li>Tuesday</li>
+                            <li>Wednesday</li>
+                        </ul>
+                    </div>
+                    <div class="desc desc2">
+                        <h1>For You</h1>
+                        <ul class="icon">
+                            <li><i class="fa-solid fa-fork"></i></li>
+                            <li><i class="fa-regular fa-knife"></i></li>
+                            <li><i class="fa-solid fa-fork-knife"></i></li>
+                        </ul>
+                        <ul class="week">
+                            <li>Thursday</li>
+                            <li>Friday</li>
+                            <li>Saturday</li>
+                        </ul>
+                    </div>
+                    <div class="desc desc3">
+                        <h1>Add Gift</h1>
+                        <ul class="icon">
+                            <li><i class="fa-regular fa-mask"></i></li>
+                            <li><i class="fa-duotone fa-mask"></i></li>
+                            <li><i class="fa-sharp fa-solid fa-mask"></i></li>
+                        </ul>
+                        <ul class="week">
+                            <li>Sunday</li>
+                            <li>Today</li>
+                            <li>Everyday</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+    <!--footer start-->
+    <footer>
+        <div id="footerWrap">
+            <p>copyright@HJ Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        </div>
+    </footer>
+</div>
+</body>
+<script>
+    var eventBoxList = document.querySelectorAll('#aside ul li');
+    var eventDesc = document.querySelectorAll('.desc');
+
+    eventDesc.style.visibility = hidden;
+    for (let i = 0; i < eventBoxList.length; i++) {
+        eventBoxList[i].addEventListener('click', function() {
+            eventDesc[i].style.visibility = 'visible';
+        });
+    }
+</script>
+</html>
